@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Name - CS PhD Student</title>
+    <style>
+        /* --- 1. 配色方案 (源自你的参考图) --- */
+        :root {
+            --bg-color: #F2F0E9;       /* 柔和米色背景 */
+            --card-bg: #FFFFFF;        /* 卡片白色背景 */
+            --text-main: #2D2D2D;      /* 深灰主文字 */
+            --text-light: #666666;     /* 浅灰辅助文字 */
+            --accent-yellow: #F8D57E;  /* 图片中的高亮黄 */
+            --accent-red: #FF8B8B;     /* 图片中的柔和红 */
+            --border-radius: 24px;     /* 大圆角风格 */
+            --shadow: 0 4px 20px rgba(0,0,0,0.03); /* 极淡的阴影 */
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px;
+            line-height: 1.6;
+        }
+
+        /* --- 2. 布局结构 (Bento Grid) --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 300px 1fr; /* 左侧边栏300px，右侧自适应 */
+            gap: 24px;
+        }
+
+        /* 手机端适配 */
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; }
+        }
+
+        /* --- 3. 通用卡片样式 --- */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 24px;
+        }
+
+        /* --- 4. 左侧个人信息栏 --- */
+        .profile-section {
+            text-align: center;
+            position: sticky;
+            top: 40px; /* 滚动时固定 */
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 4px solid white;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+        }
+
+        .name { font-size: 1.5rem; font-weight: 700; margin: 10px 0; }
+        .title { font-size: 0.9rem; color: var(--text-light); margin-bottom: 20px; }
+
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 20px; }
+        .tag {
+            background: var(--bg-color);
+            padding: 5px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 5px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            border-bottom: 2px solid var(--accent-yellow); /* 下划线装饰 */
+        }
+        .affiliation {
+            margin-top: 4px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #444;
+            text-align: center;
+        }
+
+        /* --- 5. 右侧主要内容 --- */
+        h2 {
+            font-size: 1.2rem;
+            margin-top: 0;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        /* 装饰性的小圆点，模仿图片中的设计 */
+        h2::before {
+            content: "";
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, var(--accent-yellow), var(--accent-red));
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        /* 经历列表 */
+        .item { margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+        .item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        
+        .item-header { display: flex; justify-content: space-between; margin-bottom: 5px; }
+        .item-title { font-weight: 600; font-size: 1.05rem; }
+        .item-date { color: var(--text-light); font-size: 0.9rem; }
+        .item-subtitle { color: var(--text-light); font-style: italic; font-size: 0.95rem; }
+        
+        /* Publication 特殊样式 */
+        .pub-title { font-weight: 600; color: var(--text-main); text-decoration: none; }
+        .pub-title:hover { color: #d64d4d; }
+        .pub-authors { color: var(--text-light); font-size: 0.9rem; margin: 4px 0; }
+        .pub-venue { 
+            display: inline-block; 
+            background: #FFF4D6; 
+            color: #9A7B28; 
+            padding: 2px 8px; 
+            border-radius: 6px; 
+            font-size: 0.8rem; 
+            font-weight: 600;
+        }
+        .highlight-author { font-weight: bold; color: var(--text-main); }
+
+        /* 装饰背景圆（模仿图中的模糊色块） */
+        .bg-gradient {
+            position: fixed;
+            top: -10%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(248,213,126,0.4) 0%, rgba(255,139,139,0.2) 50%, rgba(255,255,255,0) 70%);
+            z-index: -1;
+            filter: blur(60px);
+            pointer-events: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="bg-gradient"></div>
+
+    <div class="container">
+        <aside>
+            <div class="card profile-section">
+                <img src="myphoto.JPG" alt="Profile Photo" class="avatar">
+                
+                <div class="name">Dai Yihan (戴伊涵)</div>
+                
+                <div class="title">Ph.D. Student in CS<br>Peking University</div>
+
+                <div class="tags">
+                    <div class="tag">Software Engineering</div>
+                    <div class="tag">Code Generation</div>
+                    <div class="tag">Large Language Models</div>
+                </div>
+
+                <div class="social-links">
+                    <a href="mailto:yhdai25@stu.pku.edu.cn">Email</a>
+                    <a href="https://github.com/yihandai3826">GitHub</a>
+                    <a href="https://scholar.google.com/citations?user=Ra2pxQUAAAAJ&hl=zh-CN&oi=ao">Google Scholar</a>
+                </div>
+            </div>
+        </aside>
+
+        <main>
+            <section class="card">
+                <h2>About Me</h2>
+                <p>
+                    Hi! I am a first-year Ph.D. student at Peking University, advised by <a href="https://mechtaev.com">Prof. Sergey Mechtaev</a>.
+                    Previously, I received my B.S. degree from Nankai University.
+                </p>
+                <p>
+                    My research interests include <strong>Software Engineering</strong> and <strong>Large Language Models</strong>.
+                </p>
+            </section>
+
+            <section class="card">
+                <h2>Education</h2>
+                
+                <div class="item">
+                    <div class="item-header">
+                        <span class="item-title">Peking University</span>
+                        <span class="item-date">2025 - Present</span>
+                    </div>
+                    <div class="item-subtitle">Ph.D. in Computer Science</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-header">
+                        <span class="item-title">Nankai University</span>
+                        <span class="item-date">2021 - 2025</span>
+                    </div>
+                    <div class="item-subtitle">Dual Bachelor's Degrees: B.S. in Information Security (First Major), B.A. in Law (Second Major)</div>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>Selected Publications</h2>
+
+                <div class="item">
+                    <a href="https://arxiv.org/pdf/2503.19599?" class="pub-title">HoarePrompt: Structural Reasoning About Program Correctness in Natural Language</a>
+                    
+                    <div class="pub-authors">
+                        Dimitrios Stamatios Bouras, <span class="highlight-author">Yihan Dai</span>, Tairan Wang, Yingfei Xiong, Sergey Mechtaev
+                    </div>
+                    
+                    <div>
+                        <span class="pub-venue">ICSE 2026</span>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <a href="https://arxiv.org/pdf/2511.12288" class="pub-title">Reducing Hallucinations in LLM-Generated Code via Semantic Triangulation</a>
+                    
+                    <div class="pub-authors">
+                        <span class="highlight-author">Yihan Dai</span>, Sijie Liang, Haotian Xu, Peichu Xie, Sergey Mechtaev
+                    </div>
+                    
+                    <div>
+                        <span class="pub-venue">under review</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>News</h2>
+                <div class="item">
+                    <div class="item-header">
+                        <span class="item-title" style="font-weight: normal; font-size: 0.95rem;">
+                            🎉 One paper accepted to <strong>ICSE 2026</strong>!
+                        </span>
+                        <span class="item-date">Oct 2025</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
