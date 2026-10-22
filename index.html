@@ -137,7 +137,6 @@
 
         /* Publication 特殊样式 */
         .pub-title { font-weight: 600; color: var(--text-main); text-decoration: none; }
-        .pub-title:hover { color: #d64d4d; }
         .pub-authors { color: var(--text-light); font-size: 0.9rem; margin: 4px 0; }
         .pub-venue {
             display: inline-block;
@@ -153,6 +152,8 @@
         .under-review { background: #EEEEEE; color: #666666; }
         .venue-link { background: #E3EEDB; color: #3E6035; }
         .venue-link:hover { background: #D5E5C9; }
+        .preprint-link { color: #287F85; font-size: 0.8rem; font-weight: 600; text-decoration: underline; margin-left: 4px; }
+        .preprint-link:hover { color: #1C6267; text-decoration: underline; }
         .highlight-author { font-weight: bold; color: var(--text-main); }
 
         /* 装饰背景圆（模仿图中的模糊色块） */
@@ -191,7 +192,7 @@
     <div class="container">
         <aside>
             <div class="card profile-section">
-                <img src="myphoto.jpg" alt="Yihan Dai" class="avatar">
+                <img src="assets/profile.webp" width="150" height="150" decoding="async" alt="Yihan Dai" class="avatar">
                 <h1 class="name">Yihan Dai (戴伊涵)</h1>
                 <div class="title">Ph.D. Student<br><a href="https://english.pku.edu.cn">Peking University</a></div>
                 <div class="tags">
@@ -204,7 +205,7 @@
                     <a href="https://github.com/yihandai3826">GitHub</a>
                     <a href="https://www.linkedin.com/in/yihan-dai-45b10338b/">LinkedIn</a>
                     <a href="https://scholar.google.com/citations?user=Ra2pxQUAAAAJ&amp;hl=zh-CN&amp;oi=ao">Google Scholar</a>
-                    <a href="CV.pdf">CV (PDF)</a>
+                    <a href="assets/CV.pdf">CV (PDF)</a>
                 </nav>
             </div>
         </aside>
@@ -217,7 +218,7 @@
             <section class="card">
                 <h2>Education</h2>
                 <div class="education-item item">
-                    <a class="university-emblem pku" href="https://english.pku.edu.cn" aria-label="Peking University"><img src="assets/pku-logo.png" alt="Peking University emblem" width="64" height="64"></a>
+                    <a class="university-emblem pku" href="https://english.pku.edu.cn" aria-label="Peking University"><img src="assets/pku-emblem.webp" decoding="async" alt="Peking University emblem" width="64" height="64"></a>
                     <div>
                     <div class="item-header"><span class="item-title"><a href="https://english.pku.edu.cn">Peking University</a></span><span class="item-date">Sep 2025 – Present</span></div>
                     <div class="item-subtitle">Ph.D., <a href="https://pl.cs.pku.edu.cn/en/">Programming Language Lab</a>, School of Computer Science</div>
@@ -225,7 +226,7 @@
                     </div>
                 </div>
                 <div class="education-item item">
-                    <a class="university-emblem" href="https://en.nankai.edu.cn" aria-label="Nankai University"><img src="assets/nankai-emblem.jpg" alt="Nankai University emblem" width="64" height="64"></a>
+                    <a class="university-emblem" href="https://en.nankai.edu.cn" aria-label="Nankai University"><img src="assets/nankai-emblem.webp" decoding="async" alt="Nankai University emblem" width="64" height="64"></a>
                     <div>
                     <div class="item-header"><span class="item-title"><a href="https://en.nankai.edu.cn">Nankai University</a></span><span class="item-date">Sep 2021 – Jun 2025</span></div>
                     <div class="item-subtitle">Bachelor’s Degree, College of Cyber Science</div>
@@ -238,33 +239,46 @@
                 <div class="item">
                     <span class="pub-title">Validating Autoformalized Specifications via Contrapuntal Languages</span>
                     <div class="pub-authors"><span class="highlight-author">Yihan Dai</span>, Xuanlin Liu, Haoxiang Jia, Tianchi Li, Xin Zhang, Sergey Mechtaev</div>
-                    <span class="pub-venue under-review">Under review · 2026</span>
+                    <div class="pub-labels">
+                        <span class="pub-venue under-review">Under review · 2026</span>
+                        <a class="preprint-link" href="https://arxiv.org/abs/2610.30059">Preprint</a>
+                    </div>
                     <p class="pub-summary">An oracle-free approach to validating LLM-generated formal specifications using synthesized contrapuntal languages. Representational diversity helps reduce correlated errors and makes cross-language agreement a more reliable validation signal.</p>
                 </div>
                 <div class="item">
-                    <a href="https://doi.org/10.1145/3839525" class="pub-title">Reducing Hallucinations in LLM-Generated Code via Semantic Triangulation</a>
+                    <span class="pub-title">Reducing Hallucinations in LLM-Generated Code via Semantic Triangulation</span>
                     <div class="pub-authors"><span class="highlight-author">Yihan Dai</span>, Sijie Liang, Haotian Xu, Peichu Xie, Sergey Mechtaev</div>
-                    <a href="https://2026.splashcon.org/track/oopsla-2026" class="pub-venue venue-link">OOPSLA 2026 · Accepted</a>
+                    <div class="pub-labels">
+                        <a href="https://2026.splashcon.org/track/oopsla-2026" class="pub-venue venue-link">OOPSLA 2026 · Accepted</a>
+                        <a class="preprint-link" href="https://arxiv.org/abs/2511.12288">Preprint</a>
+                    </div>
                     <p class="pub-summary">An oracle-free approach that detects hallucinations in LLM-generated code by checking consistency across transformed programming tasks, supported by theoretical analysis and empirical evaluation.</p>
                 </div>
                 <div class="item">
-                    <a href="https://doi.org/10.1145/3744916.3773206" class="pub-title">HoarePrompt: Structural Reasoning About Program Correctness in Natural Language</a>
+                    <span class="pub-title">HoarePrompt: Structural Reasoning About Program Correctness in Natural Language</span>
                     <div class="pub-authors">Dimitrios Stamatios Bouras, <span class="highlight-author">Yihan Dai</span>, Tairan Wang, Yingfei Xiong, Sergey Mechtaev</div>
                     <div class="pub-labels">
                     <a href="https://conf.researchr.org/home/icse-2026" class="pub-venue venue-link">ICSE 2026</a>
                     <a href="https://conf.researchr.org/details/icse-2026/icse-2026-research-track/164/HoarePrompt-Structural-Reasoning-About-Program-Correctness-in-Natural-Language" class="pub-venue award award-link">ACM SIGSOFT Distinguished Paper Award</a>
+                        <a class="preprint-link" href="https://arxiv.org/abs/2503.19599">Preprint</a>
                     </div>
                     <p class="pub-summary">An oracle-free approach that uses structured natural-language reasoning about program states to assess code correctness.</p>
                 </div>
                 <div class="item">
-                    <a href="https://doi.org/10.48550/arXiv.2609.08371" class="pub-title">Authority Is Not a String: A Capability-Scoped Harness for Prompt-Injection-Resistant Coding Agents</a>
+                    <span class="pub-title">Authority Is Not a String: A Capability-Scoped Harness for Prompt-Injection-Resistant Coding Agents</span>
                     <div class="pub-authors">Dimitrios Stamatios Bouras, <span class="highlight-author">Yihan Dai</span>, Sergey Mechtaev</div>
-                    <a href="https://conf.researchr.org/home/splash-issta-2026/lmpl-2026" class="pub-venue venue-link">LMPL @ SPLASH 2026 · Accepted</a>
+                    <div class="pub-labels">
+                        <a href="https://conf.researchr.org/home/splash-issta-2026/lmpl-2026" class="pub-venue venue-link">LMPL @ SPLASH 2026 · Accepted</a>
+                        <a class="preprint-link" href="https://arxiv.org/abs/2609.08371">Preprint</a>
+                    </div>
                 </div>
                 <div class="item">
-                    <a href="https://doi.org/10.1145/3786181.3788729" class="pub-title">Statistical Independence Aware Caching for LLM Workflows</a>
+                    <span class="pub-title">Statistical Independence Aware Caching for LLM Workflows</span>
                     <div class="pub-authors"><span class="highlight-author">Yihan Dai</span>, Dimitrios Stamatios Bouras, Haoxiang Jia, Sergey Mechtaev</div>
-                    <a href="https://llm4code.github.io/2026/" class="pub-venue venue-link">LLM4Code @ ICSE 2026 · Accepted</a>
+                    <div class="pub-labels">
+                        <a href="https://llm4code.github.io/2026/" class="pub-venue venue-link">LLM4Code @ ICSE 2026 · Accepted</a>
+                        <a class="preprint-link" href="https://arxiv.org/abs/2511.22118">Preprint</a>
+                    </div>
                 </div>
             </section>
             <section class="card">
